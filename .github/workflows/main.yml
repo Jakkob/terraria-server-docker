@@ -12,6 +12,7 @@ on:
 
 env:
   IMAGE_NAME: terraria-server
+  DOCKERHUB_USER: bluemoomba
 
 jobs:
   # Push image to DockerHub.
@@ -29,7 +30,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ DOCKERHUB_USER }} --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u $DOCKERHUB_USER --password-stdin
 
       - name: Push image
         run: |
